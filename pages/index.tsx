@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css';
 
-interface IJoke {
+interface Joke {
   joke: {
     id: number;
     type: string;
@@ -10,7 +10,7 @@ interface IJoke {
   }
 }
 
-const Home: React.FC<IJoke> = ({ joke }) => {
+const Home: React.FC<Joke> = ({ joke }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -35,7 +35,7 @@ const Home: React.FC<IJoke> = ({ joke }) => {
 export async function getStaticProps() {
   
   const jokeResponse = await fetch('https://official-joke-api.appspot.com/jokes/random')
-  const joke = await jokeResponse.json()
+  const joke: Joke = await jokeResponse.json()
 
   return {
     props: {
